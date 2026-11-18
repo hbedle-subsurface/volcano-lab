@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Read the Volcano - A Cascades and Hawaii Volcano Lab</title>
+<link rel="stylesheet" href="css/style.css?v=v1">
+</head>
+<body>
+<header class="site-header">
+  <div class="title-block">
+    <h1>Read the Volcano</h1>
+    <p class="subtitle">A Cascades and Hawaii volcano lab - magma, hotspots, monitoring, hazards and eruption size</p>
+  </div>
+  <div class="header-tools">
+    <button type="button" id="btnPopPanel" class="tool-btn" title="Open the interactive panel in its own window">Pop out panel</button>
+    <button type="button" id="btnPopText" class="tool-btn" title="Open the instructions and hints in their own window">Pop out instructions</button>
+    <button type="button" id="btnGlossary" class="tool-btn">Glossary</button>
+  </div>
+</header>
+
+<main>
+  <section id="panelWrap" aria-label="Interactive panel">
+    <div id="panel"></div>
+    <div id="panelPlaceholder" hidden>
+      <p>The interactive panel is open in its own window.</p>
+      <button type="button" id="btnPanelBack" class="tool-btn">Bring it back</button>
+    </div>
+  </section>
+
+  <nav id="tabs" aria-label="Lab steps"></nav>
+
+  <div id="stepCol">
+  <section id="step" aria-live="polite"></section>
+<footer class="site-footer">
+  <p><strong>Read the Volcano</strong> by Heather Bedle, University of Oklahoma. Licensed under
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
+  Diagrams are simplified for teaching; data sources are listed in each step.</p>
+  <p class="small">Instructors: <a href="verify.html">check a certificate</a> - <a href="https://github.com/hbedle-subsurface/volcano-lab" target="_blank" rel="noopener">source on GitHub</a></p>
+</footer>
+  </div>
+</main>
+
+<div id="glossaryPop" class="gloss-pop" hidden role="dialog" aria-modal="false"></div>
+
+<script src="js/volc.js?v=v1"></script>
+<script src="js/glossary.js?v=v1"></script>
+<script src="js/lab.js?v=v1"></script>
+<script data-goatcounter="https://hbedle.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

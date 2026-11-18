@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instructions - Read the Volcano</title>
+<link rel="stylesheet" href="css/style.css?v=v1">
+</head>
+<body class="popwin">
+<p class="small">These instructions follow along with the lab window. Answers go in the main lab window.</p>
+<div id="text"><p>Waiting for the lab window...</p></div>
+<div id="glossaryPop" class="gloss-pop" hidden></div>
+<script src="js/glossary.js?v=v1"></script>
+<script>
+  Glossary.attach(document);
+  try {
+    const bc = new BroadcastChannel('volclab');
+    bc.onmessage = e => {
+      if (e.data && e.data.type === 'text') {
+        document.getElementById('text').innerHTML = e.data.html;
+        document.title = e.data.title + ' - Read the Volcano';
+      }
+    };
+    bc.postMessage({ type: 'hello' });
+  } catch (err) {
+    document.getElementById('text').innerHTML = '<p>This browser does not support linked windows. The instructions are still in the main lab window.</p>';
+  }
+</script>
+</body>
+</html>

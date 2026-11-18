@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Check a Certificate - Read the Volcano</title>
+<link rel="stylesheet" href="css/style.css?v=v1">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<header class="site-header">
+  <div class="title-block">
+    <h1>Check a Certificate</h1>
+    <p class="subtitle">Instructor page for Read the Volcano</p>
+  </div>
+</header>
+<main>
+  <section id="step" style="border-radius:10px">
+    <p>Type the student's name exactly as it appears on the certificate, and the scenario number printed at the bottom. This page shows the code the certificate should carry and the student's mystery volcano.</p>
+    <div class="q">
+      <div class="prompt">Student name</div>
+      <input id="nm" class="name-in" type="text" placeholder="First and last name">
+      <div class="prompt" style="margin-top:10px">Scenario number</div>
+      <input id="sd" type="number" placeholder="e.g. 48213">
+      <div style="margin-top:12px"><button class="btn" id="go" type="button">Check</button></div>
+    </div>
+    <div id="out"></div>
+    <p class="small">Codes are a light check against copied or edited screenshots, not a secure signature.</p>
+  </section>
+</main>
+<script src="js/volc.js?v=v1"></script>
+<script>
+document.getElementById('go').onclick = () => {
+  const name = document.getElementById('nm').value.trim().replace(/\s+/g, ' ');
+  const seed = parseInt(document.getElementById('sd').value, 10);
+  const out = document.getElementById('out');
+  if (!name || !(seed >= 10000 && seed <= 99999)) { out.innerHTML = '<p class="status no">Enter a name and a five-digit scenario number.</p>'; return; }
+  const sc = VOLC.build(seed), M = sc.myst;
+  out.innerHTML = `<div class="reveal">
+    <p>The certificate for <strong>${name.replace(/</g, '&lt;')}</strong>, scenario ${seed}, should show the code</p>
+    <p class="cert code" style="border:0;padding:0;background:none">${VOLC.verifyCode(name, seed)}</p>
+    <table class="data">
+      <tr><th>Mystery volcano</th><td>${M.name} (${M.when})</td></tr>
+      <tr><th>Rock</th><td>${M.rocks[0]} (${M.si}% silica)</td></tr>
+      <tr><th>Setting</th><td>${M.setting === 'hotspot' ? 'hotspot' : 'subduction zone'}</td></tr>
+      <tr><th>Eruption style, VEI</th><td>${M.style}, VEI ${M.vei}</td></tr>
+      <tr><th>Accepted plate speed</th><td>8 to 11 cm/yr (best fit ${VOLC.fitSpeed.toFixed(1)})</td></tr>
+      <tr><th>Other answers</th><td>bulge 30 m, lahar 50 km, pyroclastic flow 3 min</td></tr>
+    </table></div>`;
+};
+</script>
+</body>
+</html>
